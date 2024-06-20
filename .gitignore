@@ -35,3 +35,9 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# prod 숨김 처리
+src/**/application-prod.yml
+
+# auth 숨김 처리
+src/**/application-oauth.yml
