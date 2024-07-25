@@ -1,0 +1,3 @@
+[submodule "SUB_MODULES"]
+	path = SUB_MODULES
+	url = https://github.com/KAGU2024/SUB_MODULES.git
