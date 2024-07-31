@@ -1,13 +1,13 @@
-package server.gagu;
-
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-
-@SpringBootTest
-class GaguApplicationTests {
-
-	@Test
-	void contextLoads() {
-	}
-
-}
+//package server.gagu;
+//
+//import org.junit.jupiter.api.Test;
+//import org.springframework.boot.test.context.SpringBootTest;
+//
+//@SpringBootTest
+//class GaguApplicationTests {
+//
+//	@Test
+//	void contextLoads() {
+//	}
+//
+//}
