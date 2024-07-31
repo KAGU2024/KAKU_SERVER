@@ -24,14 +24,14 @@ jobs:
       - name: Spring Boot Build
         run: ./gradlew build
 
-      - name: Build Docker image
-        run: docker build -t zzangjyj0818/kagu .
-
       - name: DockerHub Login
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PW }}
+
+      - name: Build Docker image
+        run: docker build -t zzangjyj0818/kagu .
 
       - name: Docker Hub Push
         run: docker push zzangjyj0818/kagu
