@@ -1,6 +1,5 @@
 name: Java CI with Gradle & Docker
 
-# push와 PR이 발생했을 경우 실행
 on:
   push:
     branches: ["main"]
@@ -10,28 +9,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      #자바 버전 설정
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
-            java-version: '17'
-            distribution: 'temurin'
+          java-version: '17'
+          distribution: 'temurin'
 
-      # Spring Boot 어플리케이션 Build (1)
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./gradlew
+
       - name: Spring Boot Build
         run: ./gradlew build
 
-      # Docker 이미지 Build (2)
-      - name: docker image build
-        run: docker build -t zzangjyj0818/kagu.
+      - name: Build Docker image
+        run: docker build -t zzangjyj0818/kagu .
 
-      # DockerHub Login (3)
-      - name: docker login
+      - name: DockerHub Login
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PW }}
 
-      # Docker Hub push (4)
-      - name: docker Hub push
+      - name: Docker Hub Push
         run: docker push zzangjyj0818/kagu
