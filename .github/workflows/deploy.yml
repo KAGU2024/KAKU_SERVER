@@ -16,9 +16,6 @@ jobs:
         with:
             java-version: '17'
             distribution: 'temurin'
-	  # 브랜치 전환
-      - name: Checkout
-        uses: actions/checkout@v3
 
       # Spring Boot 어플리케이션 Build (1)
       - name: Spring Boot Build
