@@ -45,7 +45,7 @@ jobs:
 
       # 4. Docker 이미지 빌드
       - name: docker image build
-        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/server
+        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/server .
 
       # 5. Docker Hub 이미지 푸시
       - name: docker Hub push
