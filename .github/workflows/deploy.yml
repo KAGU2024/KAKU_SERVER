@@ -52,23 +52,22 @@ jobs:
           mysql user: ${{ secrets.MYSQL_USER }}
           mysql password: ${{ secrets.MYSQL_PASSWORD }}
 
-      # 주석 처리된 테스트 관련 작업들
-      #- name: Make application-test.properties
-      #  run: |
-      #    cd ./src/test/resources
-      #    touch application.yml
-      #    echo "${{ secrets.PROPERTIES_TEST }}" > application.yml
-      #  shell: bash
+        ### CD
+        # 배포를 위한 prod properties 설정
+      - name: Make application-prod.yml
+        run: |
+          cd ./src/main/resources
+          touch application-prod.yml
+          echo "${{ secrets.PROPERTIES_PROD }}" > application-prod.yml
+        shell: bash
 
-      #- name: Build with tests
-      #  run: ./gradlew test
-
-      #- name: Publish Unit Test Results
-      #  uses: EnricoMi/publish-unit-test-result-action@v1
-      #  if: ${{ always() }}
-      #  with:
-      #    files: build/test-results/**/*.xml
-
+      - name: Make application-oauth.yml
+        run: |
+          cd ./src/main/resources
+          touch application-oauth.yml
+          echo "${{ secrets.PROPERTIES_OAUTH }}" > application-oauth.yml
+        shell: bash
+      
       - name: Build with Gradle (without tests) again
         run: ./gradlew build -x test
 
