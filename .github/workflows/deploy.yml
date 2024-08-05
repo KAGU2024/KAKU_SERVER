@@ -20,12 +20,12 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-
-      - name: Checkout submodules
-        uses: actions/checkout@v3
-        with:
-          submodules: recursive
-          token: ${{ secrets.TOKEN }}
+#
+#      - name: Checkout submodules
+#        uses: actions/checkout@v3
+#        with:
+#          submodules: recursive
+#          token: ${{ secrets.TOKEN }}
 
       - name: Cache Gradle packages
         uses: actions/cache@v3
