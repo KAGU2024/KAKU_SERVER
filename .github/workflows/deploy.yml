@@ -125,7 +125,7 @@ jobs:
       # 도커 빌드 & 이미지 push
       - name: Docker build & Push
         run: |
-          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PW }}
+          docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PW }}
           docker build -f Dockerfile -t ${{ secrets.DOCKER_REPO }}/server .
           docker push ${{ secrets.DOCKER_REPO }}/server
 
