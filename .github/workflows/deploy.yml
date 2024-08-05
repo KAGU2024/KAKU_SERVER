@@ -43,15 +43,6 @@ jobs:
       - name: Build with Gradle (without tests)
         run: ./gradlew build -x test
 
-      - name: Start MySQL
-        uses: samin/mysql-action@v1.3
-        with:
-          host port: 3305
-          container port: 3305
-          mysql database: ${{ secrets.MYSQL_DATABASE }}
-          mysql user: ${{ secrets.MYSQL_USER }}
-          mysql password: ${{ secrets.MYSQL_PASSWORD }}
-
         ### CD
         # 배포를 위한 prod properties 설정
       - name: Make application-prod.yml
@@ -67,7 +58,7 @@ jobs:
           touch application-oauth.yml
           echo "${{ secrets.PROPERTIES_OAUTH }}" > application-oauth.yml
         shell: bash
-      
+
       - name: Build with Gradle (without tests) again
         run: ./gradlew build -x test
 
