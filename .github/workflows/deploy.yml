@@ -72,23 +72,16 @@ jobs:
 
     steps:
       - name: docker pull
-        run : |
-          echo "Pulling Docker image..."
-          docker pull ${{ secrets.DOCKERHUB_USERNAME }}/kagu
+        run : sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/kagu
 
       - name: docker stop container
         run: |
-          echo "Stopping old container if it exists..."
-          if [ $(docker ps -a -q -f name=kagu) ]; then
-            docker stop kagu
+          if [ $(sudo docker ps -a -q -f name=kagu) ]; then
+            sudo docker stop kagu
           fi
 
       - name: docker run new container
-        run: |
-          echo "Running new Docker container..."
-          docker run --rm -it -d -p 8080:5000 --name kagu ${{ secrets.DOCKERHUB_USERNAME }}/kagu
+        run: sudo docker run --rm -it -d -p 8080:5000 --name kagu ${{ secrets.DOCKERHUB_USERNAME }}/kagu
 
       - name: delete old docker image
-        run: |
-          echo "Pruning old Docker images..."
-          docker system prune -f
+        run: sudo docker system prune -f
