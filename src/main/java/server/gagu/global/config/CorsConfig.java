@@ -14,12 +14,14 @@ public class CorsConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration configuration = new CorsConfiguration();
 
+        // CORS 설정
         configuration.setAllowCredentials(true);
-        configuration.addAllowedOriginPattern("*");
-        configuration.addAllowedOriginPattern("http://localhost:3000");
+        configuration.addAllowedOrigin("*"); // 필요에 따라 수정
+        configuration.addAllowedOrigin("http://localhost:3000"); // 필요에 따라 수정
         configuration.addAllowedHeader("*");
         configuration.addAllowedMethod("*");
 
+        // 모든 경로에 대해 CORS 설정 적용
         source.registerCorsConfiguration("/**", configuration);
         return new CorsFilter(source);
     }
