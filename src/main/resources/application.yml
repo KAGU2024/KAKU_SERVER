@@ -75,3 +75,6 @@ springdoc:
       enabled: true
   cache:
     disabled: true
+
+my-app:
+  api-url: ${my-app.api-url}
