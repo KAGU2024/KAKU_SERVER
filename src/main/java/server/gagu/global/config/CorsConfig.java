@@ -18,10 +18,10 @@ public class CorsConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.setAllowCredentials(true);
-        configuration.addAllowedOrigin("http://localhost:3000");
-        configuration.addAllowedOrigin("http://localhost:5000");
-        configuration.addAllowedOrigin("http://localhost:5173");
-        configuration.addAllowedOrigin(url);
+        configuration.addAllowedOriginPattern("http://localhost:3000");
+        configuration.addAllowedOriginPattern(("http://localhost:5000"));
+        configuration.addAllowedOriginPattern(("http://localhost:5173"));
+        configuration.addAllowedOriginPattern((url));
         configuration.addAllowedHeader("*");
         configuration.addAllowedMethod("*");
 
