@@ -9,8 +9,9 @@ import org.springframework.web.filter.CorsFilter;
 
 @Configuration
 public class CorsConfig {
+
     @Value("${myapp.api-url}")
-    private String url;
+    private String apiUrl;
 
     @Bean
     public CorsFilter corsFilter() {
@@ -18,10 +19,10 @@ public class CorsConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.setAllowCredentials(true);
-        configuration.addAllowedOriginPattern("http://localhost:3000");
-        configuration.addAllowedOriginPattern(("http://localhost:5000"));
-        configuration.addAllowedOriginPattern(("http://localhost:5173"));
-        configuration.addAllowedOriginPattern((url));
+        configuration.addAllowedOrigin("http://localhost:3000"); // 정해진 도메인만 허용
+        configuration.addAllowedOrigin("http://localhost:5000");
+        configuration.addAllowedOrigin("http://localhost:5173");
+        configuration.addAllowedOrigin(apiUrl); // 환경변수에 지정된 URL 사용
         configuration.addAllowedHeader("*");
         configuration.addAllowedMethod("*");
 
