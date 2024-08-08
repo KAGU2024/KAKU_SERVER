@@ -6,11 +6,16 @@ import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 import io.swagger.v3.oas.models.servers.Server;
 import java.util.Arrays;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SwaggerConfig {
+
+    @Value("${myapp.api-url}")
+    private String prodUrl;
 
     @Bean
     public OpenAPI openAPI() {
@@ -33,6 +38,10 @@ public class SwaggerConfig {
                                 .description("Access Token 토큰을 입력해주세요.(Bearer X)")
                 );
 
+        Server prodServer = new Server();
+        prodServer.description("Production Server")
+                .url(prodUrl);
+
         Server localServer = new Server();
         localServer.description("Development Server")
                 .url("http://localhost:5000");
@@ -41,7 +50,7 @@ public class SwaggerConfig {
                 .addSecurityItem(securityRequirement)
                 .components(components)
                 .info(info)
-                .servers(Arrays.asList(localServer));
+                .servers(Arrays.asList(prodServer, localServer));
     }
 
 }
